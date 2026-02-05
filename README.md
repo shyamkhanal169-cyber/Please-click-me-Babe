@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -86,7 +87,7 @@
 
   <!-- BIG HEART AFTER POEM -->
   <div id="bigHeartContainer" style="display:none; margin-top:20px;">
-    <button id="bigHeart" style="font-size:80px; background:none; border:none; cursor:pointer;">
+    <button id="bigHeart" style="font-size:80px; background:none; border:none; cursor:pointer; position:relative;">
       ❤️
     </button>
   </div>
@@ -94,9 +95,11 @@
   <!-- LOVE CARD AFTER CLICKING BIG HEART -->
   <div id="loveCard" style="display:none; text-align:center; margin-top:30px;">
     <h1 style="font-size:50px; color:#c9184a;">I LOVE YOU 💖</h1>
-    <p style="font-size:24px;">
-      🍫 Chocolate + 🧸 Teddy + 💕 Hearts  
-    </p>
+    <div style="margin-top:20px;">
+      <img src="https://i.postimg.cc/GmG5Qkm5/chocolate.png" alt="Chocolate" width="100">
+      <img src="https://i.postimg.cc/3wzKJtK4/teddy.png" alt="Teddy" width="100">
+      <img src="https://i.postimg.cc/fT7B9h8r/heart.png" alt="Heart" width="100">
+    </div>
   </div>
 
 </div>
@@ -143,11 +146,13 @@
     }
     // show big heart after poem
     document.getElementById("bigHeartContainer").style.display = "block";
+    animateBigHeart();
   }
 
   // BIG HEART CLICK EVENT
   document.getElementById("bigHeart").addEventListener("click", function() {
     document.getElementById("loveCard").style.display = "block";
+    document.getElementById("bigHeartContainer").style.display = "none"; // hide heart
     // extra floating hearts
     for(let i=0;i<30;i++){
       let heart = document.createElement("div");
@@ -160,6 +165,17 @@
       setTimeout(()=>heart.remove(),4000);
     }
   });
+
+  // Animate the big heart to wiggle
+  function animateBigHeart() {
+    const heart = document.getElementById("bigHeart");
+    setInterval(() => {
+      const x = (Math.random() - 0.5) * 20; // horizontal wiggle
+      const y = (Math.random() - 0.5) * 20; // vertical wiggle
+      heart.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*30-15}deg)`;
+    }, 500);
+  }
+
 </script>
 
 <style>
@@ -171,4 +187,5 @@
 
 </body>
 </html>
+
 
