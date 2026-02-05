@@ -80,9 +80,25 @@
       साधारण दिनलाई विशेष बनाउने तिमी,<br>
       मेरो हाँसो, मेरो भरोसा, मेरो खुशी तिमी।<br>
       आज एउटा सानो प्रश्न, मनको गहिराइबाट,<br>
-      <strong>Will you be my Valentines? 🌹</strong>
+      <strong>Will you be my Valentine? 🌹</strong>
     </p>
-</div>
+  </div>
+
+  <!-- BIG HEART AFTER POEM -->
+  <div id="bigHeartContainer" style="display:none; margin-top:20px;">
+    <button id="bigHeart" style="font-size:80px; background:none; border:none; cursor:pointer;">
+      ❤️
+    </button>
+  </div>
+
+  <!-- LOVE CARD AFTER CLICKING BIG HEART -->
+  <div id="loveCard" style="display:none; text-align:center; margin-top:30px;">
+    <h1 style="font-size:50px; color:#c9184a;">I LOVE YOU 💖</h1>
+    <p style="font-size:24px;">
+      🍫 Chocolate + 🧸 Teddy + 💕 Hearts  
+    </p>
+  </div>
+
 </div>
 
 <script>
@@ -112,6 +128,7 @@
     hearts();
   }
 
+  // HEARTS + SHOW BIG HEART
   function hearts() {
     for (let i = 0; i < 20; i++) {
       let heart = document.createElement("div");
@@ -124,7 +141,25 @@
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }
+    // show big heart after poem
+    document.getElementById("bigHeartContainer").style.display = "block";
   }
+
+  // BIG HEART CLICK EVENT
+  document.getElementById("bigHeart").addEventListener("click", function() {
+    document.getElementById("loveCard").style.display = "block";
+    // extra floating hearts
+    for(let i=0;i<30;i++){
+      let heart = document.createElement("div");
+      heart.innerText = "💖";
+      heart.style.position = "fixed";
+      heart.style.left = Math.random()*100+"vw";
+      heart.style.top = Math.random()*50+"vh";
+      heart.style.fontSize = (20+Math.random()*30)+"px";
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),4000);
+    }
+  });
 </script>
 
 <style>
@@ -136,3 +171,4 @@
 
 </body>
 </html>
+
