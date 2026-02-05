@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -52,6 +51,25 @@
     line-height: 1.6;
     color: #5a1a2b;
   }
+
+  /* Heartbeat animation for the big heart */
+  @keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.3); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+
+  #wigglyHeart {
+    animation: heartbeat 1s infinite;
+    display: inline-block;
+  }
+
+  @keyframes float {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-800px); opacity: 0; }
+  }
 </style>
 </head>
 
@@ -87,7 +105,7 @@
 
   <!-- BIG HEART AFTER POEM -->
   <div id="bigHeartContainer" style="display:none; margin-top:20px;">
-    <button id="bigHeart" style="font-size:80px; background:none; border:none; cursor:pointer; position:relative;">
+    <button id="wigglyHeart" style="font-size:80px; background:none; border:none; cursor:pointer;">
       ❤️
     </button>
   </div>
@@ -96,9 +114,9 @@
   <div id="loveCard" style="display:none; text-align:center; margin-top:30px;">
     <h1 style="font-size:50px; color:#c9184a;">I LOVE YOU 💖</h1>
     <div style="margin-top:20px;">
-      <img src="https://i.postimg.cc/GmG5Qkm5/chocolate.png" alt="Chocolate" width="100">
-      <img src="https://i.postimg.cc/3wzKJtK4/teddy.png" alt="Teddy" width="100">
-      <img src="https://i.postimg.cc/fT7B9h8r/heart.png" alt="Heart" width="100">
+      <img src="https://raw.githubusercontent.com/samkhanal-dev/valentine-images/main/chocolate.png" alt="Chocolate" width="100">
+      <img src="https://raw.githubusercontent.com/samkhanal-dev/valentine-images/main/teddy.png" alt="Teddy" width="100">
+      <img src="https://raw.githubusercontent.com/samkhanal-dev/valentine-images/main/heart.png" alt="Heart" width="100">
     </div>
   </div>
 
@@ -146,11 +164,10 @@
     }
     // show big heart after poem
     document.getElementById("bigHeartContainer").style.display = "block";
-    animateBigHeart();
   }
 
   // BIG HEART CLICK EVENT
-  document.getElementById("bigHeart").addEventListener("click", function() {
+  document.getElementById("wigglyHeart").addEventListener("click", function() {
     document.getElementById("loveCard").style.display = "block";
     document.getElementById("bigHeartContainer").style.display = "none"; // hide heart
     // extra floating hearts
@@ -165,25 +182,7 @@
       setTimeout(()=>heart.remove(),4000);
     }
   });
-
-  // Animate the big heart to wiggle
-  function animateBigHeart() {
-    const heart = document.getElementById("bigHeart");
-    setInterval(() => {
-      const x = (Math.random() - 0.5) * 20; // horizontal wiggle
-      const y = (Math.random() - 0.5) * 20; // vertical wiggle
-      heart.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random()*30-15}deg)`;
-    }, 500);
-  }
-
 </script>
-
-<style>
-@keyframes float {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-800px); opacity: 0; }
-}
-</style>
 
 </body>
 </html>
